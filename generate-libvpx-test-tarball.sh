@@ -38,5 +38,5 @@ pushd /tmp/libvpx
     LIBVPX_TEST_DATA_PATH="/tmp/libvpx-${TAG:1}-testdata" make -j$(nproc) testdata
 popd
 pushd /tmp
-    XZ_OPT="-T0 -9" tar cvaf "libvpx-${TAG:1}-testdata.tar.xz" "libvpx-${TAG:1}-testdata"
+    XZ_OPT="-T0 -9e" tar cvaf "libvpx-${TAG:1}-testdata.tar.xz" "libvpx-${TAG:1}-testdata"
 popd
