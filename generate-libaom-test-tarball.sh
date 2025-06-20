@@ -40,6 +40,6 @@ pushd /tmp/libaom
     LIBAOM_TEST_DATA_PATH="/tmp/libaom-${TAG:1}-testdata" make -C build -j$(nproc) testdata
 popd
 pushd /tmp
-    XZ_OPT="-T0 -9" tar cvaf "libaom-${TAG:1}-testdata.tar.xz" "libaom-${TAG:1}-testdata"
+    XZ_OPT="-T0 -9e" tar cvaf "libaom-${TAG:1}-testdata.tar.xz" "libaom-${TAG:1}-testdata"
 popd
 
