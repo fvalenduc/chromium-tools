@@ -303,8 +303,8 @@ def main():
                 print(f"git add {os.path.join(to_path, 'Manifest')}")
                 print("git commit -m",
                       f"\"{category}/{pkg}: automated update",
-                      f"({uversion}{suffix})",
-                      "-s -S\"")
+                      f"({uversion}{suffix})\"",
+                      "-s -S")
             else:
                 digestgen.digestgen(None, cfg, db)
 
