@@ -286,7 +286,7 @@ def main():
                     if args.dry_run:
                         print(f"ekeyword amd64 {to_ebuild}")
                     else:
-                        subprocess.run(["ekeyword", "amd64",
+                        subprocess.run(["ekeyword", "amd64", "arm64",
                                         os.path.join(repo_path, to_ebuild)])
 
             if args.dry_run:
