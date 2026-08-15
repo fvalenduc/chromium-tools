@@ -36,8 +36,8 @@ pushd /tmp/libaom
     echo "Packaging libaom testdata for ${TAG}"
     git checkout "tags/${TAG}"
 
-    cd build && cmake ..
-    LIBAOM_TEST_DATA_PATH="/tmp/libaom-${TAG:1}-testdata" make -j$(nproc) testdata
+    cmake . -B build
+    LIBAOM_TEST_DATA_PATH="/tmp/libaom-${TAG:1}-testdata" make -C build -j$(nproc) testdata
 popd
 pushd /tmp
     XZ_OPT="-T0 -9" tar cvaf "libaom-${TAG:1}-testdata.tar.xz" "libaom-${TAG:1}-testdata"
