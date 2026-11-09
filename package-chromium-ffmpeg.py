@@ -29,15 +29,22 @@ def get_commit(version_url):
 
         # Search for commit hash within the 'gitlink-detail' class (adapt if needed)
         match = re.search(
-            r'<div class="gitlink-detail">Submodule link to (.*?) of', response.text)
+        r'<div[^>]*class="[^"]*gitlink-detail[^"]*"[^>]*>(.*?)</div>',
+        response.text,
+        re.DOTALL
+        )
         if match:
-            return match.group(1)
+            # Extract only the Git commit hash (40 hexadecimal characters)
+            commit_match = re.search(r'\b[0-9a-f]{40}\b', match.group(1))
+            if commit_match:
+                return commit_match.group(0)
+            else:
+                return None
         else:
             return None
     except requests.exceptions.RequestException as e:
         logging.error(f"Error: Failed to fetch URL {version_url} - {e}")
         return None
-
 
 def archive_ffmpeg(version, commit_hash):
     """Archives the Chromium ffmpeg repository at the specified commit hash.
